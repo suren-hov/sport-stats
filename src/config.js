@@ -19,6 +19,12 @@ const config = {
   // proactive header-based throttling as the real safety net. Override via
   // STATS_CONCURRENCY env var once you've confirmed your effective limit.
   statsConcurrency: Number(process.env.STATS_CONCURRENCY) || 2,
+  // How many internal retry passes getLaLigaStats makes over failed
+  // fixtures before giving up, and how long to pause between passes.
+  // This is what lets a SINGLE request finish the whole season in one
+  // go instead of you manually re-running the server multiple times.
+  statsMaxPasses: Number(process.env.STATS_MAX_PASSES) || 6,
+  statsCooldownMs: Number(process.env.STATS_COOLDOWN_MS) || 20000,
 };
 
 if (!config.apiFootball.key) {
