@@ -1,4 +1,4 @@
-# AffPapa Test Task — La Liga 2024 Stats
+# Test Task — La Liga 2024 Stats
 
 Calculates, for every La Liga team in the 2024 season:
 1. Average yellow cards per match (descending)
