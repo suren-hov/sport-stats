@@ -1,7 +1,9 @@
 const ExcelJS = require('exceljs');
+const fs = require('fs');
 const path = require('path');
 
-const OUTPUT_PATH = path.join(__dirname, '..', 'output', 'la-liga-2024-stats.xlsx');
+const OUTPUT_DIR = path.join(__dirname, '..', 'output');
+const OUTPUT_PATH = path.join(OUTPUT_DIR, 'la-liga-2024-stats.xlsx');
 
 async function exportToExcel({ avgYellowCards, totalCorners, failedFixtureCount }) {
   const workbook = new ExcelJS.Workbook();
@@ -41,6 +43,7 @@ async function exportToExcel({ avgYellowCards, totalCorners, failedFixtureCount 
     });
   }
 
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   await workbook.xlsx.writeFile(OUTPUT_PATH);
   return OUTPUT_PATH;
 }
